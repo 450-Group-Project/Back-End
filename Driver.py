@@ -32,7 +32,7 @@ def main():
                                                   truncating='pre', padding='pre', maxlen=max_sentence_len)
   # Uncomment when wanting to create
   """
-  #define and compile LSTM model
+  # define and compile LSTM model
 
   ent_init = K.initializers.RandomUniform(-0.01, 0.01, seed=1)
   init = K.initializers.glorot_uniform(seed=1)
@@ -43,31 +43,28 @@ def main():
                                           output_dim=embed_vec_len, embeddings_initializer=ent_init,
                                           mask_zero=True))
   model.add(K.layers.LSTM(units=100, kernel_initializer=init,
-                          dropout=0.2, recurrent_dropout=0.2))  # 100 memory
+                          dropout=0.2, recurrent_dropout=0.2))
   model.add(K.layers.Dense(units=1, kernel_initializer=init,
                            activation='sigmoid'))
   model.compile(loss='binary_crossentropy', optimizer=simple_adam,
                 metrics=['acc'])
 
-  #train model
+  # train model
   bat_size = 32
   max_epochs = 3
-  print("\nStarting training ")
   model.fit(train_x, train_y, epochs=max_epochs,
             batch_size=bat_size, shuffle=True, verbose=1)
-  print("Training complete \n")
 
-  #evaluate model
+  # evaluate model
   loss_acc = model.evaluate(test_x, test_y, verbose=0)
   
-  #save model
-  print("Saving model to disk \n")
+  # save model
   mp = ".\\Models\\imdb_model.h5"
   model.save(mp)
   """
 
-  #predicts sentiment
-  #use model to make a prediction
+  # predicts sentiment
+  # use model to make a prediction
   mp = ".\\Models\\imdb_model.h5"
   model = load_model(mp)
   print("New review: \'A contradictory statement is one that says two things that cannot both be true\'")
