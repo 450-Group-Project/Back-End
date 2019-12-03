@@ -60,7 +60,7 @@ def main():
   #evaluate model
   loss_acc = model.evaluate(test_x, test_y, verbose=0)
   
-  # 5. save model
+  #save model
   print("Saving model to disk \n")
   mp = ".\\Models\\imdb_model.h5"
   model.save(mp)
