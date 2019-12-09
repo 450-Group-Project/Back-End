@@ -102,29 +102,6 @@ with warnings.catch_warnings():
     X_train = pad_sequences(X_train, padding='post', maxlen=maxlen)
     X_test = pad_sequences(X_test, padding='post', maxlen=maxlen)
 
-
-# Second
-embedding_dim = 50
-
-model = Sequential()
-model.add(layers.Embedding(input_dim=vocab_size,
-                           output_dim=embedding_dim,
-                           input_length=maxlen))
-model.add(layers.GlobalMaxPool1D())
-model.add(layers.Dense(10, activation='relu'))
-model.add(layers.Dense(1, activation='sigmoid'))
-model.compile(optimizer='adam',
-              loss='binary_crossentropy',
-              metrics=['accuracy'])
-history = model.fit(X_train, y_train,
-                    epochs=50,
-                    verbose=False,
-                    validation_data=(X_test, y_test),
-                    batch_size=10)
-loss, accuracy = model.evaluate(X_train, y_train, verbose=False)
-loss, accuracy = model.evaluate(X_test, y_test, verbose=False)
-plot_history(history)
-
 ###################################################
 ###################################################
 # This is the main part of the project
